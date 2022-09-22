@@ -13,8 +13,11 @@ python-dotenv = "^0.21.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.8.0"
-pylint = "^2.15.3"
+flake8 = "^5.0.4"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100

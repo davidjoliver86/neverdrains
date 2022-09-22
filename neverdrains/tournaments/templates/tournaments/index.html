@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Tournaments</title>
+</head>
+
+<body>
+    {% if tournaments %}
+    <h1>List of Tournaments</h1>
+    <ul>
+        {% for tournament in tournaments %}
+        <li><a href="{% url 'tournaments:detail' tournament.id %}">{{ tournament.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No tournaments to display.</p>
+    {% endif %}
+</body>
+
+</html>

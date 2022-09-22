@@ -1,6 +1,5 @@
-# pylint: disable=wildcard-import,unused-wildcard-import
+# flake8: noqa - star imports are intentional for derived settings files
 # "Dev" is effectively "Local".
-
 
 import os
 from dotenv import load_dotenv

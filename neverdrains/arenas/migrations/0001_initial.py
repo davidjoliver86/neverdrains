@@ -8,11 +8,13 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = []
+    dependencies = [
+        ("tournaments", "0001_initial"),
+    ]
 
     operations = [
         migrations.CreateModel(
-            name="Tournament",
+            name="Arena",
             fields=[
                 (
                     "id",
@@ -21,11 +23,11 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("name", models.CharField(max_length=100)),
-                ("create_date", models.DateTimeField()),
+                ("abbreviation", models.CharField(default=None, max_length=20)),
             ],
         ),
         migrations.CreateModel(
-            name="Division",
+            name="ArenaInBank",
             fields=[
                 (
                     "id",
@@ -33,12 +35,16 @@ class Migration(migrations.Migration):
                         auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
                     ),
                 ),
-                ("name", models.CharField(max_length=100)),
-                ("description", models.TextField(null=True)),
                 (
-                    "tournament",
+                    "arena",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="tournaments.tournament"
+                        on_delete=django.db.models.deletion.CASCADE, to="arenas.arena"
+                    ),
+                ),
+                (
+                    "division",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="tournaments.division"
                     ),
                 ),
             ],
