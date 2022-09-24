@@ -7,10 +7,10 @@
 </head>
 
 <body>
-    {% if tournaments %}
+    {% if tournament_list %}
     <h1>List of Tournaments</h1>
     <ul>
-        {% for tournament in tournaments %}
+        {% for tournament in tournament_list %}
         <li><a href="{% url 'tournaments:detail' tournament.id %}">{{ tournament.name }}</a></li>
         {% endfor %}
     </ul>

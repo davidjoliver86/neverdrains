@@ -5,7 +5,8 @@ from . import views
 app_name = "tournaments"
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("<int:tournament_id>/", views.tournament_detail, name="detail"),
-    path("divisions/<int:division_id>/", views.divisions, name="divisions"),
+    path("", views.IndexView.as_view(), name="index"),
+    path("<int:pk>/", views.DetailView.as_view(), name="detail"),
+    path("divisions/<int:pk>/", views.DivisionView.as_view(), name="divisions"),
+    path("divisions/<int:division_id>/entry", views.entry, name="entry"),
 ]

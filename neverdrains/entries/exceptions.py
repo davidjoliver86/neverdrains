@@ -1,0 +1,2 @@
+class ScoreValidationException(Exception):
+    pass

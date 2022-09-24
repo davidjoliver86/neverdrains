@@ -7,13 +7,19 @@
 </head>
 
 <body>
-    {{ division }}
-    <!-- <h1>{{ tournament }}</h1>
+    <h1>{{ division }}</h1>
+    <h2>Arenas</h2>
     <ul>
-        {% for division in tournament.division_set.all %}
-        <li><a href="{% url 'tournaments:divisions' division.id %}">{{ division }}</a></li>
+        {% for arena in division.arenainbank_set.all %}
+        <li>{{ arena }}</li>
         {% endfor %}
-    </ul> -->
+    </ul>
+    <h2>Registered Players</h2>
+    <ul>
+        {% for player in division.tournament.registeredplayer_set.all %}
+        <li>{{ player }}</li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>

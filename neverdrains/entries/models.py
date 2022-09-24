@@ -14,4 +14,4 @@ class Entry(models.Model):
     timestamp = models.DateTimeField()
 
     def __str__(self) -> str:
-        return "Player {self.player.name}: {self.score} on {self.arena.arena.name}"
+        return f"Player {self.player.player.name}: {self.score} on {self.arena.arena.name}"

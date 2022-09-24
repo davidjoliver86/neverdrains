@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            display: none;
+        }
+
+    </style>
+    <meta charset="utf-8" />
+    <title>{{ division }} - Entry Input</title>
+</head>
+
+<body>
+    {% if errors %}
+    {% endif %}
+    <form action="{% url 'tournaments:entry' division.id %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                <h1>Entry</h1>
+            </legend>
+            <label for="player-select">Player:</label>
+            <select name="player" id="player-select">
+                <option value="">- Select Player -</option>
+                {% for player in players %}
+                <option value="{{ player.pk }}">{{ player.player.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="arena-select">Arena:</label>
+            <select name="arena" id="arena-select">
+                <option value="">- Select Arena -</option>
+                {% for arena in arenas %}
+                <option value="{{ arena.pk }}">{{ arena.arena.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="score">Score:</label>
+            <input type="text" id="score" name="score">
+
+            <label for="Void">Void:</label>
+            <input type="checkbox" id="void" name="void">
+
+        </fieldset>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
