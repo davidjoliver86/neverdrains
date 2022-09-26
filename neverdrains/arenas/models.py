@@ -26,3 +26,6 @@ class ArenaInBank(models.Model):
 
     def __str__(self) -> str:
         return f"{self.arena.name} - {self.division}"
+
+    def get_rankings(self):
+        pass

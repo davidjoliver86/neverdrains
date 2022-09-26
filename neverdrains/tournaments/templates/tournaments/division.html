@@ -11,7 +11,7 @@
     <h2>Arenas</h2>
     <ul>
         {% for arena in division.arenainbank_set.all %}
-        <li>{{ arena }}</li>
+        <li><a href="{% url 'arenas:arena_in_bank_detail' arena.id %}">{{ arena }}</a></li>
         {% endfor %}
     </ul>
     <h2>Registered Players</h2>

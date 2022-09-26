@@ -1,0 +1,33 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{{ aab.division.tournament.name }} - {{ aab.arena.name }}</title>
+</head>
+
+<body>
+    <h1>{{ aab.arena.name }}</h1>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Score</th>
+            <th>Points</th>
+            <th>Time</th>
+        </tr>
+        {% for entry in rankings %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ entry.player.player.name }}</td>
+            <td>{{ entry.score|intcomma }}</td>
+            <td>{{ entry.rank_points({{ forloop.counter }}) }}</td>
+            <td>{{ entry.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
