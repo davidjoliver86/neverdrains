@@ -22,7 +22,7 @@
             <td>{{ forloop.counter }}</td>
             <td>{{ entry.player.player.name }}</td>
             <td>{{ entry.score|intcomma }}</td>
-            <td>{{ entry.rank_points({{ forloop.counter }}) }}</td>
+            <td>{{ entry.rank_score }}</td>
             <td>{{ entry.timestamp }}</td>
         </tr>
         {% endfor %}

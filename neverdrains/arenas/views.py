@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.views.generic import DetailView
 from . import models
+from entries.models import Entry
 
 from typing import Dict, Any
 
@@ -20,4 +21,5 @@ class AABDetailView(DetailView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         ctx = super().get_context_data(**kwargs)
+        ctx["rankings"] = Entry.arena_in_bank_rankings(ctx["object"].id)
         return ctx

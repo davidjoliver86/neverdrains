@@ -6,3 +6,4 @@
 
 # Local database
 data/
+__pycache__/
