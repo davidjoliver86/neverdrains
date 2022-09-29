@@ -29,11 +29,7 @@ class DivisionView(generic.DetailView):
     model = models.Division
     template_name = "tournaments/division.html"
 
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        ctx = super().get_context_data(**kwargs)
-
-        # Aggregate data of entries per player.
-
+    def _build_rankings(self):
         arenas = get_list_or_404(ArenaInBank, division_id=self.kwargs["pk"])
         player_data = {}
         for arena in arenas:
@@ -53,7 +49,11 @@ class DivisionView(generic.DetailView):
                 best_scores = best_scores[:cutoff]
             rankings.append(PlayerRanking(player=player.player.name, score=sum(best_scores)))
         rankings.sort(key=attrgetter("score"), reverse=True)
-        ctx["rankings"] = rankings
+        return rankings
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        ctx = super().get_context_data(**kwargs)
+        ctx["rankings"] = self._build_rankings()
         return ctx
 
 

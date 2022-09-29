@@ -1,5 +1,8 @@
 import datetime
+import random
+from pytz import timezone
 
+from django.conf import settings
 from django.db import transaction
 from django.core.management.base import BaseCommand
 
@@ -10,6 +13,8 @@ from players import models as pl_models
 
 
 class Command(BaseCommand):
+    help = "Initializes a fresh database with fake data."
+
     @transaction.atomic
     def handle(self, *args, **kwargs):
         now = datetime.datetime.now()
@@ -100,3 +105,22 @@ class Command(BaseCommand):
             rp = pl_models.RegisteredPlayer(player=player, tournament=tournament)
             rp.save()
             print(f"Saved {rp}")
+
+        # Scores
+        for division in the_open, classics:
+            for arena in ar_models.ArenaInBank.objects.filter(division=division):
+                tournament = division.tournament
+                for player in pl_models.RegisteredPlayer.objects.filter(tournament=tournament):
+                    for _ in range(3):
+                        if division is the_open:
+                            score = random.randint(0, 9_000_000) + 1_000_000
+                        else:
+                            score = random.randint(0, 990_000) + 10_000
+                        aware = timezone(settings.TIME_ZONE).localize(now)
+                        entry = en_models.Entry(
+                            arena=arena,
+                            player=player,
+                            score=score,
+                            timestamp=aware,
+                        )
+                        entry.save()
