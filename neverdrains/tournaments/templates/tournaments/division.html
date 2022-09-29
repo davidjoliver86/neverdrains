@@ -14,12 +14,21 @@
         <li><a href="{% url 'arenas:arena_in_bank_detail' arena.id %}">{{ arena }}</a></li>
         {% endfor %}
     </ul>
-    <h2>Registered Players</h2>
-    <ul>
-        {% for player in division.tournament.registeredplayer_set.all %}
-        <li>{{ player }}</li>
+    <h2>Player Rankings</h2>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Score</th>
+        </tr>
+        {% for rank in rankings %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ rank.player }}</td>
+            <td>{{ rank.score }}</td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 </body>
 
 </html>

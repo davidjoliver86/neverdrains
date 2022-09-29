@@ -1,7 +1,8 @@
-from django.db import models
-from tournaments.models import Tournament
+from collections import namedtuple
 
-# Create your models here.
+from django.db import models
+
+from tournaments.models import Tournament
 
 
 class Player(models.Model):
@@ -26,3 +27,6 @@ class RegisteredPlayer(models.Model):
 
     def __str__(self):
         return f"Player {self.player.name} registered in {self.tournament.name}"
+
+
+PlayerRanking = namedtuple("PlayerRanking", ["player", "score"])

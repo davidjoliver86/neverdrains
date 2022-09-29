@@ -31,3 +31,13 @@ class Division(models.Model):
 
     def __str__(self) -> str:
         return f"{self.tournament.name} - {self.description}"
+
+    def get_ranks(self):
+        ranks = [self.score_1]
+        for attr in range(2, 6):
+            attr_name = f"score_{attr}"
+            value = getattr(self, attr_name)
+            if value is None:
+                return ranks
+            ranks.append(value)
+        return ranks
